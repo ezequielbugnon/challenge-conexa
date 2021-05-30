@@ -3,6 +3,8 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import userRoutes from './routes/user.routes';
+import postRoutes from './routes/post.routes';
+import photoRoutes from './routes/photo.routes';
 
 class Server {
     private app: express.Application;
@@ -24,6 +26,8 @@ class Server {
 
     private routes():void{
         this.app.use('/', userRoutes);
+        this.app.use('/', postRoutes);
+        this.app.use('/', photoRoutes);
     }
 
     public start():void {
