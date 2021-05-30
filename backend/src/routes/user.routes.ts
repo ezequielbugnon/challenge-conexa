@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controller';
-
+import { verify } from '../jwt/jwt';
 
 class UserRouter {
 
@@ -14,7 +14,9 @@ class UserRouter {
     }
 
     private routes() {
-        this.router.get('/user', this.userController.getUser);
+        this.router.get('/user/profile', verify, this.userController.profile);
+        this.router.post('/user/signin', this.userController.signIn);
+        this.router.post('/user/signup', this.userController.signUp);
     }
 
     public start(): Router{

@@ -20,3 +20,4 @@ class PhotoRouter {
 }
 const photoRoutes = new PhotoRouter();
 exports.default = photoRoutes.start();
+//# sourceMappingURL=photo.routes.js.map

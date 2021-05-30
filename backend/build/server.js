@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
+const db_1 = __importDefault(require("./database/db"));
 const user_routes_1 = __importDefault(require("./routes/user.routes"));
 const post_routes_1 = __importDefault(require("./routes/post.routes"));
 const photo_routes_1 = __importDefault(require("./routes/photo.routes"));
@@ -33,3 +34,5 @@ class Server {
 }
 const server = new Server();
 server.start();
+db_1.default();
+//# sourceMappingURL=server.js.map

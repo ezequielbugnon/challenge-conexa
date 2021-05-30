@@ -20,3 +20,4 @@ class PostRouter {
 }
 const postRoutes = new PostRouter();
 exports.default = postRoutes.start();
+//# sourceMappingURL=post.routes.js.map

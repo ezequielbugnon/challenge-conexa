@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import connexion from './database/db';
 
 import userRoutes from './routes/user.routes';
 import postRoutes from './routes/post.routes';
@@ -38,5 +39,5 @@ class Server {
 }
 
 const server = new Server();
-
 server.start();
+connexion();

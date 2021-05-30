@@ -12,21 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const axios_1 = __importDefault(require("axios"));
-class PhotoController {
-    getPhotos(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { start, limit } = req.params;
-            try {
-                const response = yield axios_1.default(`https://jsonplaceholder.typicode.com/photos?_start=${start}0&_limit=${limit}`);
-                res.status(200).json(response.data);
-            }
-            catch (error) {
-                console.log(error);
-                res.status(404).json('Photos not found');
-            }
-        });
+exports.verify = exports.generate = void 0;
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const config_1 = require("../config");
+const generate = (payload) => {
+    const token = jsonwebtoken_1.default.sign(payload, config_1.CONFIG_SECRET, {
+        expiresIn: 60 * 60 * 24
+    });
+    return token;
+};
+exports.generate = generate;
+const verify = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const token = req.header('x-access');
+    if (!token) {
+        return res.status(401).send({ auth: false, token: 'No token provided' });
     }
-}
-exports.default = PhotoController;
-//# sourceMappingURL=photo.controller.js.map
+    const decoded = yield jsonwebtoken_1.default.verify(token, config_1.CONFIG_SECRET);
+    req.userId = decoded._id;
+    next();
+});
+exports.verify = verify;
+//# sourceMappingURL=jwt.js.map

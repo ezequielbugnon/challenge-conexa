@@ -12,21 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const axios_1 = __importDefault(require("axios"));
-class PhotoController {
-    getPhotos(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { start, limit } = req.params;
-            try {
-                const response = yield axios_1.default(`https://jsonplaceholder.typicode.com/photos?_start=${start}0&_limit=${limit}`);
-                res.status(200).json(response.data);
-            }
-            catch (error) {
-                console.log(error);
-                res.status(404).json('Photos not found');
-            }
+const mongoose_1 = __importDefault(require("mongoose"));
+const connexion = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield mongoose_1.default.connect('mongodb://localhost/conexa', {
+            useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false,
+            useCreateIndex: true
         });
+        console.info(`Connected to database on Worker process: ${process.pid}`);
     }
-}
-exports.default = PhotoController;
-//# sourceMappingURL=photo.controller.js.map
+    catch (error) {
+        console.error(`Connection error: ${error.stack} on Worker process: ${process.pid}`);
+        process.exit(1);
+    }
+});
+exports.default = connexion;
+//# sourceMappingURL=db.js.map

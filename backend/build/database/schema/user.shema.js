@@ -12,21 +12,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const axios_1 = __importDefault(require("axios"));
-class PhotoController {
-    getPhotos(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { start, limit } = req.params;
-            try {
-                const response = yield axios_1.default(`https://jsonplaceholder.typicode.com/photos?_start=${start}0&_limit=${limit}`);
-                res.status(200).json(response.data);
-            }
-            catch (error) {
-                console.log(error);
-                res.status(404).json('Photos not found');
-            }
-        });
-    }
-}
-exports.default = PhotoController;
-//# sourceMappingURL=photo.controller.js.map
+const mongoose_1 = require("mongoose");
+const bcrypt_1 = __importDefault(require("bcrypt"));
+;
+const userSchema = new mongoose_1.Schema({
+    username: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+}, { timestamps: true });
+userSchema.methods.encryptPassword = (password) => __awaiter(void 0, void 0, void 0, function* () {
+    const salt = yield bcrypt_1.default.genSalt(10);
+    return bcrypt_1.default.hash(password, salt);
+});
+exports.default = mongoose_1.model("User", userSchema);
+//# sourceMappingURL=user.shema.js.map
