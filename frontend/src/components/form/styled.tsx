@@ -33,7 +33,7 @@ export const ContainerForm = styled.div <{ right?: boolean }>`
             }
 
             & > input {
-                width: 230px;
+                width: 240px;
                 height: 35px;
             }
 

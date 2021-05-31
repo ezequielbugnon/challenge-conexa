@@ -48,11 +48,10 @@ const UserState = (props: Props) => {
     }
 
     const authFn = () => {
-        if(localStorage.getItem('userToken')){
-            dispatch({
-                type: 'AUTH'
-            }) 
-        }
+        dispatch({
+            type: 'AUTH'
+        }) 
+        
     }
 
     const close = () => {
