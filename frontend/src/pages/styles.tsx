@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{ end?: boolean }>`
+interface YourProps {
+    end: boolean
+}
+
+export const Container = styled.div<YourProps>`
 width: 100%;
 height: 100vh;
 display: flex;
-justify-content: ${props => props.end? 'end': 'start'};
+justify-content: ${props => props.end ? 'flex-end': 'start'};
 `
 
 export const BoxGreen =  styled.div`

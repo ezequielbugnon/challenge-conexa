@@ -18,7 +18,7 @@ class PhotoController {
         return __awaiter(this, void 0, void 0, function* () {
             const { start, limit } = req.params;
             try {
-                const response = yield axios_1.default(`https://jsonplaceholder.typicode.com/photos?_start=${start}0&_limit=${limit}`);
+                const response = yield axios_1.default(`https://jsonplaceholder.typicode.com/photos?_start=${start}&_limit=${limit}`);
                 res.status(200).json(response.data);
             }
             catch (error) {

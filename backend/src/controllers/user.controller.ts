@@ -21,10 +21,8 @@ class UserController{
         if (!user) return res.status(400).json('Email or Password is wrong');
        
         if(user){
-            console.log(user.password)
-            console.log(req.body.password);
             const correctPassword = await bcrypt.compare(req.body.password, user.password);
-            if (!correctPassword) return res.status(400).json('Invalid Password');
+            if (!correctPassword) return res.status(400).json('Email or Password is wrong');
         }
         
 
@@ -49,7 +47,7 @@ class UserController{
             const savedUser = await newUser.save();
     
             const token = generate({ _id: savedUser._id })
-            res.header('x-access', token).json('User created');
+            res.header('x-access', token).json(token);
 
         } catch (e) {
             res.status(400).json(e);

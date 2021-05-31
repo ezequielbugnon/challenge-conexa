@@ -15,8 +15,27 @@ export const ContainerForm = styled.div <{ right?: boolean }>`
         flex-direction: column;
         align-items: center;
 
+        & > a {
+            color:black;
+            text-decoration: none;
+        }
         & > div {
             margin-bottom: 20px;
+
+            & >p {
+                color: red;
+                font-size: 14px;
+                text-align: center;
+            }
+
+            & > h1{
+               text-align: center;
+            }
+
+            & > input {
+                width: 230px;
+                height: 35px;
+            }
 
             & > button{
                 background-color:#85f28e;
@@ -25,6 +44,8 @@ export const ContainerForm = styled.div <{ right?: boolean }>`
                 color: white;
                 height: 40px;
                 transition: all .6 ease;
+                cursor: pointer;
+
 
                 &:hover{
                     background-color: white;
@@ -38,6 +59,7 @@ export const ContainerForm = styled.div <{ right?: boolean }>`
 
     @media(max-width: 500px){
         right: 10%;
+        left: 10%;
     }
 `
 

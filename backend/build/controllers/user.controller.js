@@ -35,11 +35,9 @@ class UserController {
             if (!user)
                 return res.status(400).json('Email or Password is wrong');
             if (user) {
-                console.log(user.password);
-                console.log(req.body.password);
                 const correctPassword = yield bcrypt_1.default.compare(req.body.password, user.password);
                 if (!correctPassword)
-                    return res.status(400).json('Invalid Password');
+                    return res.status(400).json('Email or Password is wrong');
             }
             const token = jwt_1.generate({ _id: user._id });
             res.header('x-access', token).json(token);
@@ -62,7 +60,7 @@ class UserController {
                 newUser.password = yield newUser.encryptPassword(newUser.password);
                 const savedUser = yield newUser.save();
                 const token = jwt_1.generate({ _id: savedUser._id });
-                res.header('x-access', token).json('User created');
+                res.header('x-access', token).json(token);
             }
             catch (e) {
                 res.status(400).json(e);
