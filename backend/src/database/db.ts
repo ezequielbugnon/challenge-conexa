@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
+import {CONEXION} from '../config'
 
 const connexion = async () => {
     try {
-        await mongoose.connect('mongodb://localhost/conexa',{
+        await mongoose.connect(CONEXION,{
             useNewUrlParser: true, useUnifiedTopology:true, useFindAndModify: false,
             useCreateIndex: true
         });

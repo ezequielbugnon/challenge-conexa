@@ -22,7 +22,7 @@ class UserController{
        
         if(user){
             const correctPassword = await bcrypt.compare(req.body.password, user.password);
-            if (!correctPassword) return res.status(400).json('Email or Password is wrong');
+            if (!correctPassword) return res.status(400).json('Credentials are wrong');
         }
         
 

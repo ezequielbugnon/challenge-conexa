@@ -37,7 +37,7 @@ class UserController {
             if (user) {
                 const correctPassword = yield bcrypt_1.default.compare(req.body.password, user.password);
                 if (!correctPassword)
-                    return res.status(400).json('Email or Password is wrong');
+                    return res.status(400).json('Credentials are wrong');
             }
             const token = jwt_1.generate({ _id: user._id });
             res.header('x-access', token).json(token);

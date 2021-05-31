@@ -13,9 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
+const config_1 = require("../config");
 const connexion = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield mongoose_1.default.connect('mongodb://localhost/conexa', {
+        yield mongoose_1.default.connect(config_1.CONEXION, {
             useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false,
             useCreateIndex: true
         });
